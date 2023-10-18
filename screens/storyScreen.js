@@ -142,6 +142,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#15193c"
   },
+  containerLight: {
+    flex: 1,
+    backgroundColor: "white"
+  },
   droidSafeArea: {
     marginTop: Platform.OS === "android" ? StatusBar.currentHeight : RFValue(35)
   },
@@ -168,6 +172,11 @@ const styles = StyleSheet.create({
     fontSize: RFValue(28),
     fontFamily: "Bubblegum-Sans"
   },
+  appTitleTextLight: {
+    color: "black",
+    fontSize: RFValue(28),
+    fontFamily: "Bubblegum-Sans"
+  },
   storyContainer: {
     flex: 1
   },
@@ -175,6 +184,19 @@ const styles = StyleSheet.create({
     margin: RFValue(20),
     backgroundColor: "#2f345d",
     borderRadius: RFValue(20)
+  },
+  storyCardLight: {
+    margin: RFValue(20),
+    backgroundColor: "white",
+    borderRadius: RFValue(20),
+    shadowColor: "rgb(0, 0, 0)",
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    elevation: 2
   },
   image: {
     width: "100%",
@@ -196,10 +218,20 @@ const styles = StyleSheet.create({
     fontSize: RFValue(25),
     color: "white"
   },
+  storyTitleTextLight: {
+    fontFamily: "Bubblegum-Sans",
+    fontSize: RFValue(25),
+    color: "black"
+  },
   storyAuthorText: {
     fontFamily: "Bubblegum-Sans",
     fontSize: RFValue(18),
     color: "white"
+  },
+  storyAuthorTextLight: {
+    fontFamily: "Bubblegum-Sans",
+    fontSize: RFValue(18),
+    color: "black"
   },
   iconContainer: {
     flex: 0.2
@@ -212,10 +244,20 @@ const styles = StyleSheet.create({
     fontSize: RFValue(15),
     color: "white"
   },
+  storyTextLight: {
+    fontFamily: "Bubblegum-Sans",
+    fontSize: RFValue(15),
+    color: "black"
+  },
   moralText: {
     fontFamily: "Bubblegum-Sans",
     fontSize: RFValue(20),
     color: "white"
+  },
+  moralTextLight: {
+    fontFamily: "Bubblegum-Sans",
+    fontSize: RFValue(20),
+    color: "black"
   },
   actionContainer: {
     justifyContent: "center",
@@ -233,6 +275,11 @@ const styles = StyleSheet.create({
   },
   likeText: {
     color: "white",
+    fontFamily: "Bubblegum-Sans",
+    fontSize: RFValue(25),
+    marginLeft: RFValue(5)
+  },
+  likeTextLight: {
     fontFamily: "Bubblegum-Sans",
     fontSize: RFValue(25),
     marginLeft: RFValue(5)

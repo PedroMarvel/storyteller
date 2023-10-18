@@ -8,11 +8,37 @@ import Feed from "../screens/feed";
 import CreateStory from "../screens/createStory";
 const Tab = createMaterialBottomTabNavigator();
 
-export default function TabNavigator(){
+import firebase from "firebase";
+
+export default class TabNavigator extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+        fontsLoaded: false,
+        light_theme: true
+    };
+}
+componentDidMount() {
+  //this._loadFontsAsync();
+   this.fetchUser();
+}
+async fetchUser() {
+  let theme;
+  await firebase
+    .database()
+    .ref("/users/" + firebase.auth().currentUser.uid)
+    .on("value", function (snapshot) {
+      theme = snapshot.val().current_theme;
+    });
+  this.setState({
+    light_theme: theme === "light" ? true : false,
+  });
+}
+  render(){
   return (
     <Tab.Navigator
       labeled={false}
-      barStyle={styles.bottomTabStyle}
+      barStyle={this.state.light_theme?styles.bottomTabStyleLight:styles.bottomTabStyle}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -38,14 +64,22 @@ export default function TabNavigator(){
       <Tab.Screen name="CreateStory" component={CreateStory} options={{headerShown:false}}/>
     </Tab.Navigator>
   );
-};
+}}
 
 const styles = StyleSheet.create({
   bottomTabStyle: {
     backgroundColor: "#2f345d",
     height: "8%",
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
+    borderTopLeftRadius: RFValue(30),
+    borderTopRightRadius: RFValue(30),
+    overflow: "hidden",
+    position: "absolute"
+  },
+  bottomTabStyleLight: {
+    backgroundColor: "#eaeaea",
+    height: "8%",
+    borderTopLeftRadius: RFValue(30),
+    borderTopRightRadius: RFValue(30),
     overflow: "hidden",
     position: "absolute"
   },

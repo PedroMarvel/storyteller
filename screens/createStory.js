@@ -177,6 +177,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#15193c"
   },
+  containerLight: {
+    flex: 1,
+    backgroundColor: "white"
+  },
   droidSafeArea: {
     marginTop: Platform.OS === "android" ? StatusBar.currentHeight : RFValue(35)
   },
@@ -203,6 +207,11 @@ const styles = StyleSheet.create({
     fontSize: RFValue(28),
     fontFamily: "Bubblegum-Sans"
   },
+  appTitleTextLight: {
+    color: "black",
+    fontSize: RFValue(28),
+    fontFamily: "Bubblegum-Sans"
+  },
   fieldsContainer: {
     flex: 0.85
   },
@@ -221,6 +230,23 @@ const styles = StyleSheet.create({
     borderRadius: RFValue(10),
     paddingLeft: RFValue(10),
     color: "white",
+    fontFamily: "Bubblegum-Sans"
+  },
+  inputFontLight: {
+    height: RFValue(40),
+    borderColor: "black",
+    borderWidth: RFValue(1),
+    borderRadius: RFValue(10),
+    paddingLeft: RFValue(10),
+    color: "black",
+    fontFamily: "Bubblegum-Sans"
+  },
+  dropdownLabel: {
+    color: "white",
+    fontFamily: "Bubblegum-Sans"
+  },
+  dropdownLabelLight: {
+    color: "black",
     fontFamily: "Bubblegum-Sans"
   },
   inputFontExtra: {

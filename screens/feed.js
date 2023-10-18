@@ -82,6 +82,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#15193c"
   },
+  containerLight: {
+    flex: 1,
+    backgroundColor: "white"
+  },
   droidSafeArea: {
     marginTop: Platform.OS === "android" ? StatusBar.currentHeight : RFValue(35)
   },
@@ -108,7 +112,12 @@ const styles = StyleSheet.create({
     fontSize: RFValue(28),
     fontFamily: "Bubblegum-Sans"
   },
+  appTitleTextLight: {
+    color: "black",
+    fontSize: RFValue(28),
+    fontFamily: "Bubblegum-Sans"
+  },
   cardContainer: {
-    flex: 0.93
+    flex: 0.85
   }
 });
