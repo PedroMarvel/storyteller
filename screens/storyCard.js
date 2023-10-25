@@ -24,8 +24,11 @@ export default class StoryCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fontsLoaded: false
+      fontsLoaded: false,
+      story_id: this.props.story.key,
+      story_data: this.props.story.data
     };
+
   }
 
   async _loadFontsAsync() {
@@ -37,11 +40,22 @@ export default class StoryCard extends Component {
     this._loadFontsAsync();
   }
 
+
   render() {
+
+
+    var story = this.state.story_data
     if (this.state.fontsLoaded) {
       SplashScreen.hideAsync();
+      let images = {
+        image_1: require("../assets/story_image_1.png"),
+        image_2: require("../assets/story_image_2.png"),
+        image_3: require("../assets/story_image_3.png"),
+        image_4: require("../assets/story_image_4.png"),
+        image_5: require("../assets/story_image_5.png")
+      };
       return (
-        <TouchableOpacity onPress={()=>this.props.navigation.navigate("StoryScreen",{story:this.props.story})} style={styles.container}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate("StoryScreen", { story: this.props.story })} style={styles.container}>
           <View style={styles.cardContainer}>
             <Image
               source={require("../assets/story_image_1.png")}
@@ -50,13 +64,13 @@ export default class StoryCard extends Component {
 
             <View style={styles.titleContainer}>
               <Text style={styles.storyTitleText}>
-                {this.props.story.title}
+                {story.title}
               </Text>
               <Text style={styles.storyAuthorText}>
-                {this.props.story.author}
+                {story.author}
               </Text>
               <Text style={styles.descriptionText}>
-                {this.props.story.description}
+                {story.description}
               </Text>
             </View>
             <View style={styles.actionContainer}>

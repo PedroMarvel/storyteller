@@ -9,6 +9,8 @@ import {
   Image,
   ScrollView,
   TextInput,
+  Button,
+  Alert,
   Dimensions
 } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
@@ -17,6 +19,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
+import firebase from "firebase"
 
 SplashScreen.preventAutoHideAsync();
 
@@ -37,6 +40,7 @@ export default class CreateStory extends Component {
     };
   }
 
+
   async _loadFontsAsync() {
     await Font.loadAsync(customFonts);
     this.setState({ fontsLoaded: true });
@@ -44,6 +48,46 @@ export default class CreateStory extends Component {
 
   componentDidMount() {
     this._loadFontsAsync();
+  }
+
+  async addStory() {
+    if (
+      this.state.title &&
+      this.state.description &&
+      this.state.story &&
+      this.state.moral
+    ) {
+      let storyData = {
+        preview_image: this.state.previewImage,
+        title: this.state.title,
+        description: this.state.description,
+        story: this.state.story,
+        moral: this.state.moral,
+        author: firebase.auth().currentUser.displayName,
+        created_on: new Date(),
+        author_uid: firebase.auth().currentUser.uid,
+        likes: 0
+      };
+      await firebase
+        .database()
+        .ref(
+          "/posts/" +
+          Math.random()
+            .toString(36)
+            .slice(2)
+        )
+        .set(storyData)
+        .then(function (snapshot) { });
+      //this.props.setUpdateToTrue();
+      this.props.navigation.navigate("Feed");
+    } else {
+      Alert.alert(
+        "Error",
+        "Todos os campos são obrigatórios!",
+        [{ text: "OK", onPress: () => console.log("OK Pressionado") }],
+        { cancelable: false }
+      );
+    }
   }
 
   render() {
@@ -163,6 +207,13 @@ export default class CreateStory extends Component {
                 numberOfLines={4}
                 placeholderTextColor="white"
               />
+              <View style={styles.submitButton}>
+                <Button
+                  onPress={() => this.addStory()}
+                  title="Submit"
+                  color="#841584"
+                />
+              </View>
             </ScrollView>
           </View>
           <View style={{ flex: 0.08 }} />
@@ -255,5 +306,10 @@ const styles = StyleSheet.create({
   inputTextBig: {
     textAlignVertical: "top",
     padding: RFValue(5)
+  },
+  submitButton: {
+    marginTop: RFValue(20),
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
