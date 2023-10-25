@@ -55,7 +55,7 @@ export default class StoryCard extends Component {
         image_5: require("../assets/story_image_5.png")
       };
       return (
-        <TouchableOpacity onPress={() => this.props.navigation.navigate("StoryScreen", { story: this.props.story })} style={styles.container}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate("StoryScreen", { story: story, story_id:this.state.story_id })} style={styles.container}>
           <View style={styles.cardContainer}>
             <Image
               source={require("../assets/story_image_1.png")}

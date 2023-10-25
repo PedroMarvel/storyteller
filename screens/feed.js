@@ -9,7 +9,7 @@ import {
   Image
 } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
-import StoryCard from "./StoryCard.1";
+import StoryCard from "./storyCard"
 
 
 import * as Font from "expo-font";
@@ -23,7 +23,7 @@ let customFonts = {
   "Bubblegum-Sans": require("../assets/fonts/BubblegumSans-Regular.ttf")
 };
 
-let stories = require("./temp_stories.json");
+// let stories = require("./temp_stories.json");
 
 export default class Feed extends Component {
   constructor(props) {

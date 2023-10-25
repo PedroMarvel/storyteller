@@ -17,6 +17,10 @@ import * as Speech from "expo-speech";
 
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
+
 
 let customFonts = {
   "Bubblegum-Sans": require("../assets/fonts/BubblegumSans-Regular.ttf")
@@ -59,9 +63,15 @@ export default class StoryScreen extends Component {
   render() {
     if (!this.props.route.params) {
       this.props.navigation.navigate("Home");
-    } else if (!this.state.fontsLoaded) {
-      return <AppLoading />;
-    } else {
+    } else if (this.state.fontsLoaded) {
+      SplashScreen.hideAsync();
+      let images = {
+        image_1: require("../assets/story_image_1.png"),
+        image_2: require("../assets/story_image_2.png"),
+        image_3: require("../assets/story_image_3.png"),
+        image_4: require("../assets/story_image_4.png"),
+        image_5: require("../assets/story_image_5.png")
+      };
       return (
         <View style={styles.container}>
           <SafeAreaView style={styles.droidSafeArea} />
